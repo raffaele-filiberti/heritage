@@ -226,13 +226,13 @@
 
 :global {
   .example-enter {
-    &:local(.bgActive .bgOverlay){
+    &:local(.bgActive .bgOverlay) {
       transform: scaleX(1);
     }
   }
 
   .example-enter.example-enter-active {
-    &:local(.bgActive .bgOverlay){
+    &:local(.bgActive .bgOverlay) {
       transform: scaleX(0);
       transition: transform 550ms cubic-bezier(.86, 0, .07, 1);;
       transform-origin: right center;
@@ -241,19 +241,62 @@
   }
 
   .example-leave {
-    &:local(.bgActive .bgOverlay){
+    &:local(.bgActive .bgOverlay) {
       transform: scaleX(0);
     }
   }
 
   .example-leave.example-leave-active {
-    &:local(.bgActive .bgOverlay){
+    &:local(.bgActive .bgOverlay) {
       transition: transform 550ms cubic-bezier(.86, 0, .07, 1);;
       transform-origin: right center;
       transform: scaleX(1);
     }
   }
 }
+
+:global {
+  .submenu {
+    &-enter {
+      &:local(.subLink) {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-100%);
+        will-change: transform;
+        backface-visibility: hidden;
+      }
+
+      &-active {
+        &:local(.subLink) {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(0);
+          transition: opacity 500ms cubic-bezier(.86, 0, .07, 1), visibility 500ms step-start, transform 500ms cubic-bezier(.86, 0, .07, 1);
+        }
+      }
+    }
+
+    &-leave {
+      &:local(.subLink) {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+        will-change: transform;
+        backface-visibility: hidden;
+      }
+
+      &-active {
+        &:local(.subLink) {
+          opacity: 0;
+          visibility: hidden;
+          transform: translateX(100%);
+          transition: opacity 500ms cubic-bezier(.86, 0, .07, 1), visibility 500ms step-end, transform 500ms cubic-bezier(.86, 0, .07, 1);
+        }
+      }
+    }
+  }
+}
+
 
 
 

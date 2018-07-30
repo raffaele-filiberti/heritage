@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './nav.scss';
 import classNames from "classnames/bind";
-import Transition from 'react-transition-group/Transition';
 import Router from 'next/router';
 import Button from "../Button/Button";
 import {gql} from "apollo-boost";
@@ -10,6 +9,7 @@ import {LG, ML} from "../ResponsiveWrapper/Responsive";
 import imgix from "../Global/imgix";
 import Link from "next/link";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import SubMenu from '../SubMenu/SubMenu';
 
 const cx = classNames.bind(styles);
 
@@ -27,7 +27,7 @@ menuItems: allMenuItems(filter: {parent: {exists: false}}) {
   }
 }`;
 
-function normalize(items, currentUrl = '') {
+export function normalize(items, currentUrl = '') {
     let normalizedItems = {...items};
 
     if (currentUrl.length > 0) {
@@ -127,13 +127,15 @@ const Nav = ({
                                 <div className={styles.submenus}>
 
                                     {menuItems.map(({title, links}, index) =>
-                                        links.length > 0 && <SubMenu
+                                        links.length > 0 &&
+                                        <SubMenu
                                             key={index}
                                             currentUrl={currentUrl}
                                             subMenu={links}
                                             visible={openSubMenu === title}
                                             openSubMenu={openSubMenu}
                                             handleCloseMenu={handleCloseMenu}
+                                            className={styles.submenu}
                                         />
                                     )}
 
@@ -181,6 +183,7 @@ const SubMenuToggle = ({
                            openSubMenu,
                            toggleSubMenu,
                            image: {url},
+    style
                        }) => {
     const bg = (
         <div className={`${styles.bg} ${openSubMenu === title ? styles.bgActive : ''}`}
@@ -193,7 +196,10 @@ const SubMenuToggle = ({
                 className={styles.link}
                 onClick={() => toggleSubMenu(title)}
                 active={openSubMenu === title}
-                title={title}/>
+                title={title}
+                style={style}
+
+            />
         </div>
     );
 
@@ -202,7 +208,9 @@ const SubMenuToggle = ({
             className={styles.link}
             onClick={() => toggleSubMenu(title)}
             active={openSubMenu === title}
-            title={title}/>
+            title={title}
+            style={style}
+        />
     );
 
     return (
@@ -213,15 +221,16 @@ const SubMenuToggle = ({
     );
 };
 
-const NavigationLink = ({
-                            asPath,
-                            currentUrl = '',
-                            title = '', path,
-                            handleCloseMenu,
-                            isSubLink,
-                            swallow,
-                            image: {url} = false,
-                        }) => {
+export const NavigationLink = ({
+                                   asPath,
+                                   currentUrl = '',
+                                   title = '', path,
+                                   handleCloseMenu,
+                                   isSubLink,
+                                   swallow,
+                                   image: {url} = false,
+                                   style
+                               }) => {
     const bg = (
         <div className={`${styles.bg} ${currentUrl === asPath ? styles.bgActive : ''}`}
              style={{
@@ -237,6 +246,7 @@ const NavigationLink = ({
                 }}
                 active={currentUrl === asPath}
                 title={title}
+                style={style}
                 link
             />
         </div>
@@ -251,6 +261,7 @@ const NavigationLink = ({
             }}
             active={currentUrl === asPath}
             title={title}
+            style={style}
             link
         />
     );
@@ -263,69 +274,5 @@ const NavigationLink = ({
     );
 
 };
-
-
-let subMenuClasses = cx(
-    {
-        submenu: true
-    }
-);
-
-const duration = 500;
-
-const defaultStyle = {
-    display: 'block',
-    transition: `visibility ${duration}ms, opacity ${duration}ms ease-in-out`,
-    opacity: 0,
-};
-
-const transitionStyles = {
-    entering: {opacity: 0, display: 'block', visibility: 'hidden'},
-    entered: {opacity: 1, display: 'block', visibility: 'visible'},
-    exiting: {opacity: 0, display: 'block', visibility: 'hidden'},
-};
-
-class SubMenu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            width: 1024,
-        }
-    }
-
-    componentDidMount() {
-        this.setState({width: window.innerWidth});
-        window.addEventListener('resize', () => this.setState({width: window.innerWidth}));
-    }
-
-    render() {
-        const {
-            subMenu,
-            visible,
-            openSubMenu,
-            ...rest
-        } = this.props;
-
-        return (
-            <Transition in={visible} timeout={duration} unmountOnExit={this.state.width < 1024}>
-                {(state) => (
-                    <div className={subMenuClasses} style={{
-                        ...defaultStyle,
-                        ...transitionStyles[state]
-                    }}>
-                        {subMenu.map((link, index) =>
-                            <NavigationLink
-                                key={index}
-                                {...normalize(link, openSubMenu)}
-                                {...rest}
-                                isSubLink
-                            />
-                        )}
-                    </div>
-                )}
-            </Transition>
-        )
-    };
-}
 
 export default Nav;

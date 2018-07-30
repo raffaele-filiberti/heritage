@@ -1,0 +1,104 @@
+@import "../../scss/utils";
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  bottom: 0;
+  background: #fafafa;
+  z-index: 12;
+  transform: translateX(-320px);
+  transition: transform 700ms 0ms;
+
+  &.open {
+    transform: translateX(0);
+    transition: transform 700ms 0ms;
+  }
+}
+
+.form {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-top: 88px;
+
+  @include mq(md) {
+    padding-top: 152px;
+  }
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  padding: 0 24px;
+  height: 100%;
+  overflow-y: scroll;
+
+  @include mq(md){
+    padding: 0 24px 0 56px;
+  }
+}
+
+.filter {
+  @extend %body;
+  margin-bottom: 2rem;
+}
+
+.legend {
+  font-weight: 500;
+  margin: .67em 0;
+  color: #555555;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: none;
+
+  &:checked + .label .icon {
+    border-radius: 50%;
+    background-color: color(primary);
+  }
+}
+
+.label {
+
+}
+
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: .5rem;
+  background-color: transparent;
+  border: 1px solid color(primary);
+  vertical-align: middle;
+  transition-timing-function: cubic-bezier(.86, 0, .07, 1);
+  transition-property: border-radius, background-color;
+  transition-duration: .2s;
+}
+
+.text {
+
+}
+
+.group {
+  display: flex;
+
+  > .filter {
+    flex: 0 0 50%;
+  }
+}
+
+.control {
+  margin: 4px 0;
+}
+
+.close {
+  position: absolute;
+  top: 56px;
+  left: 56px;
+}

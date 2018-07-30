@@ -1,0 +1,26 @@
+//
+// Breakpoints
+//
+$breakpoints: (
+        xs: 0px,
+        sm: 576px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1240px,
+        xxl: 1440px
+);
+
+$white: #fff;
+$black: #161516;
+$brownishGrey: #666666;
+$brownishOrange: #d7792c;
+$grapePurple: #6d2327;
+$foreground: #EAE3DA;
+
+$colors: (
+        primary: $brownishOrange,
+        secondary: $grapePurple,
+        white: $white,
+        black: $black,
+        foreground: $foreground
+);

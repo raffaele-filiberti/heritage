@@ -1,0 +1,98 @@
+@import "../../scss/utils";
+
+.wrapper {
+  composes: wrapper from '../Scroller/scroller.scss';
+  padding-right: 24px;
+
+  @include mq(md) {
+    padding-right: 100px;
+  }
+}
+
+.inner {
+  composes: inner from '../Scroller/scroller.scss';
+  height: 30px;
+
+  @include mq(md) {
+    width: 350px;
+  }
+}
+
+.title {
+  @extend %body;
+  font-weight: 500;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+}
+
+.list {
+  @extend %body;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  .current,
+  .link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    text-decoration: none;
+
+    &:hover {
+      .circle {
+        border-color: color(primary);
+      }
+      span {
+        color: color(primary);
+      }
+    }
+
+    span {
+      display: block;
+      width: 100%;
+      color: #555;
+      transition: .25s;
+    }
+
+    .circle {
+      position: relative;
+      display: inline-flex;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: .25s;
+
+      img {
+        width: 100%;
+      }
+
+      &.frame {
+        margin-right: 2rem;
+      }
+
+      &.lens {
+        margin-right: -2rem;
+      }
+    }
+
+    .variant {
+      position: relative;
+      display: flex;
+      flex-flow: column;
+    }
+  }
+
+  .current {
+    .circle {
+      border: 2px solid transparent !important;
+    }
+
+    span {
+      color: color(black) !important;
+    }
+  }
+}

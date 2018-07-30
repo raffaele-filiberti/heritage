@@ -1,0 +1,80 @@
+@import "../../scss/utils";
+
+.wrapper {
+  composes: wrapper from '../Scroller/scroller.scss';
+
+  @include mq(md) {
+    padding-right: 80px;
+  }
+}
+
+.inner {
+  composes: inner from '../Scroller/scroller.scss';
+  height: 40px;
+
+  & + .inner {
+    padding-left: 40px;
+    height: 100%;
+  }
+
+  @include mq(md) {
+    width: 450px;
+  }
+}
+
+.header {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.title {
+  @extend %subtitle;
+  color: color(black);
+  position: relative;
+  display: inline-block;
+
+  .callToAction & {
+    width: calc(100% - 56px);
+    padding-right: .36em;
+  }
+}
+
+.subtitle {
+  @extend %caption;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  display: block;
+  margin-bottom: 40px;
+}
+
+
+.btn {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+}
+
+.body {
+  position: absolute;
+  top: calc(100% - 12px);
+  left: 0;
+  right: 0;
+  mask-image: linear-gradient(0deg, hsla(0, 0%, 100%, 0), #fff 10%, #fff 50%, #fff 90%, hsla(0, 0%, 100%, 0));
+  transform: translateY(50px);
+  will-change: transform;
+  visibility: hidden;
+  opacity: 0;
+
+  :global(.in-viewport) & {
+    transition: opacity 700ms 300ms cubic-bezier(.694, 0, .335, 1), transform 700ms 300ms cubic-bezier(.694, 0, .335, 1), visibility 700ms 300ms step-start;
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+  }
+}

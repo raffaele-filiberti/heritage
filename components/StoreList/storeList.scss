@@ -1,0 +1,15 @@
+@import '../../scss/utils';
+
+.list {
+  width: 100%;
+  height: calc(100% - 184px);
+  margin: 184px 0 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: scroll;
+
+  @include mq(md) {
+    height: calc(100% - 208px);
+    margin: 208px 0 0;
+  }
+}

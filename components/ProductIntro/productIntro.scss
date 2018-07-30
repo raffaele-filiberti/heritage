@@ -1,0 +1,62 @@
+@import "../../scss/utils";
+
+.wrapper {
+  position: relative;
+  composes: wrapper from '../Scroller/scroller.scss';
+
+  @include mq(md) {
+    padding: 0 56px;
+  }
+
+    @include mq(xxl) {
+    padding:0 56px 0 80px;
+  }
+}
+
+.inner,
+.descInner {
+  composes: inner from '../Scroller/scroller.scss';
+
+  @include mq(md) {
+    width: 450px
+  }
+
+  @include mq(xxl) {
+    width: calc(33vw - 136px);
+  }
+}
+
+.descWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  padding: 56px 24px 0;
+  z-index: 1;
+
+  @include mq(md) {
+    align-items: center;
+    padding:0 56px;
+  }
+
+  @include mq(xxl) {
+    padding:0 56px 0 80px;
+  }
+}
+
+.descInner {
+  mask-image: linear-gradient(0deg,hsla(0,0%,100%,0),#fff 10%,#fff 50%,#fff 90%,hsla(0,0%,100%,0));
+}
+
+.desc {
+  @extend %body;
+  width: 100%;
+  max-height: calc(40vh - 112px) !important;
+  padding-top: 1vh !important;
+}

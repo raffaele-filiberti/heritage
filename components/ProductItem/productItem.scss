@@ -1,0 +1,73 @@
+@import "../../scss/utils";
+
+.wrapper {
+  composes: wrapper from '../Scroller/scroller.scss';
+  opacity: 0;
+  transform: translateY(100%);
+  visibility: hidden;
+  will-change: transform;
+
+  &:global(.in-viewport) {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition: opacity 700ms 0ms cubic-bezier(.694, 0, .335, 1), transform 700ms 0ms cubic-bezier(.694, 0, .335, 1), visibility 700ms 0ms step-start;
+  }
+
+
+  @include mq(md) {
+    padding-right: 80px;
+  }
+}
+
+.inner {
+  composes: inner from '../Scroller/scroller.scss';
+  width: calc(66vw - 48px);
+
+  @include mq(md) {
+    width: 350px;
+  }
+}
+
+.link {
+  text-decoration: none;
+}
+
+.img img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.header {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.model {
+  @extend %model;
+  text-align: center;
+  padding: 0;
+}
+
+.brand {
+  @extend %body;
+  text-align: left;
+  font-weight: 500;
+  padding-top: 1rem;
+
+}
+
+.series {
+  color: #555;
+}
+
+.collection {
+  color: color(secondary)
+}

@@ -1,0 +1,65 @@
+%title {
+  font-family: Didot, serif;
+  font-size: 6rem;
+  line-height: 1;
+  font-style: italic;
+}
+
+%headline {
+  font-family: Didot, serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-style: italic;
+
+  @include mq(lg) {
+    font-size: 3.25vw;
+  }
+
+  @include mq(xxl) {
+    font-size: 2.75vw;
+  }
+}
+
+%navLink {
+  @extend %body;
+  font-family: 'Gotham Medium', sans-serif;
+}
+
+%subtitle {
+  font-family: Didot, serif;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  letter-spacing: letter-spacing(.15, 1);
+  font-style: italic;
+}
+
+%model {
+  font-family: Didot, serif;
+  font-size: 2.5rem;
+  line-height: 2.8rem;
+  letter-spacing: letter-spacing(.15, 1);
+  font-style: italic;
+}
+
+%lead {
+  font-family: 'Gotham Medium', sans-serif;
+  font-size: .993rem;
+  line-height: 1.5rem;
+  letter-spacing: letter-spacing(.5, .993);
+}
+
+%body {
+  font-family: Gotham Book, sans-serif;
+  font-size: .875rem;
+  line-height: 1.5rem;
+  letter-spacing: letter-spacing(.5, .875);
+}
+
+%caption {
+  font-family: Gotham Book, sans-serif;
+  font-size: .75rem;
+  line-height: 1;
+  letter-spacing: letter-spacing(2, .75);
+  text-transform: uppercase;
+}
+

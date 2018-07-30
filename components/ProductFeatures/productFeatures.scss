@@ -1,0 +1,70 @@
+@import "../../scss/utils";
+
+.wrapper {
+  composes: wrapper from '../Scroller/scroller.scss';
+  padding-left: 56px;
+
+  @include mq(md) {
+    padding: 0 80px;
+  }
+}
+
+.inner {
+  composes: inner from '../Scroller/scroller.scss';
+  height: 40px;
+  width: 250px;
+}
+
+.header {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.title {
+  position: relative;
+  display: inline-block;
+  @extend %subtitle;
+}
+
+.body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: .5em;
+  overflow: hidden;
+}
+
+.feature {
+  @extend %body;
+  font-family: "Gotham Medium", sans-serif;
+  color: #666666;
+  padding-right: 24px;
+  transform: translateX(-100%);
+  will-change: transform;
+}
+
+.value {
+  @extend %body;
+  transform: translateX(100%);
+  will-change: transform;
+}
+
+:global(.in-viewport) {
+  .feature,
+  .value {
+    transition: transform 700ms 300ms cubic-bezier(.694, 0, .335, 1);
+    transform: translateX(0);
+  }
+}

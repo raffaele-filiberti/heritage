@@ -1,0 +1,91 @@
+@import '../../scss/utils';
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  .loader {
+    position: absolute;
+    top: 208px;
+    left: 0;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    position: absolute;
+    top: 88px;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+    @extend %caption;
+
+    @include mq(lg) {
+      top: 0;
+      height: 152px;
+    }
+  }
+
+  .stores {
+    position: relative;
+    margin-top: 0;
+    flex: 0 0 100%;
+    overflow: hidden;
+    background: color(foreground);
+
+    @include mq(lg){
+      flex: 0 0 32%;
+    }
+
+    @include mq(xl){
+      flex: 0 0 25%;
+    }
+
+  }
+
+  .map {
+      display: block;
+      flex: 0 0 68%;
+
+    @include mq(xl){
+      display: block;
+      flex: 0 0 75%;
+    }
+  }
+
+  .message {
+    @extend %caption;
+    position: absolute;
+    top: 184px;
+    left: 0;
+    padding: 24px;
+    list-style: none;
+    overflow-y: scroll;
+
+    @include mq(md) {
+      top: 208px;
+
+    }
+  }
+}

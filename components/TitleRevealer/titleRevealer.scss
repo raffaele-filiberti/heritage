@@ -1,0 +1,105 @@
+@import "../../scss/utils";
+
+.revealer {
+  overflow: hidden;
+  position: relative;
+  padding: 1.5vw 0;
+  width: 100%;
+}
+
+.paragraph {
+  @extend %subtitle;
+  padding: 0;
+
+  .phrase {
+    white-space: normal;
+  }
+}
+
+.revealerSubtitle {
+  @extend %caption;
+  overflow: hidden;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.subtitle,
+.title {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+
+  span {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    transform: translateX(-105%);
+    will-change: transform;
+    padding: 0 .875vw 0 .25vw;
+
+    a {
+      color: inherit;
+      pointer-events: auto;
+    }
+
+    :global(.in-viewport) & {
+      transition: transform 700ms 300ms cubic-bezier(.694, 0, .335, 1);
+      transform: translateX(0);
+
+      &:nth-of-type(2) {
+        transition-delay: 350ms;
+      }
+    }
+  }
+}
+
+.double {
+
+  .phrase:nth-of-type(1) {
+    margin-bottom: 10px;
+  }
+
+  .phrase:nth-of-type(2) {
+    margin-top: 10px;
+  }
+
+}
+
+.triple {
+
+  .phrase:nth-of-type(2) {
+    margin: 7px 0;
+
+    @include mq(md) {
+      margin: 15px 0;
+    }
+  }
+}
+
+.single,
+.double,
+.triple {
+  @extend %title;
+  font-size: 11.5vw;
+}
+
+@include mq(md) {
+  .single {
+    font-size: 5.8vw;
+  }
+
+  .triple,
+  .double {
+    font-size: 4vw;
+  }
+}
+
+@include mq(xxl) {
+  .single {
+    font-size: 4.5vw;
+  }
+}

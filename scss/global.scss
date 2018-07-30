@@ -1,0 +1,52 @@
+@import "./utils";
+
+:global(.text) {
+  position: relative;
+  padding-top: 3vh;
+  max-height: calc(45vh - 88px);
+  overflow: hidden;
+  visibility: inherit;
+  opacity: 1;
+  pointer-events: none;
+
+  a {
+    pointer-events: auto;
+  }
+}
+
+:global(.scroller) {
+  @extend %body;
+  color: color(black);
+  pointer-events: none;
+  transition: transform 200ms;
+
+  &:last-child {
+    padding-bottom: 3vh;
+  }
+}
+
+:global(.remove-events) {
+  pointer-events: auto;
+}
+
+:global(.baseLink) {
+  position: relative;
+  font-family: "Gotham Medium", sans-serif;
+  margin: 0;
+  padding: 4px;
+  color: #fff;
+  cursor: none;
+
+  @include mq(lg) {
+    &:not(:last-of-type):after {
+      @include pseudo();
+      top: 50%;
+      right: -.75em;
+      height: 14px;
+      width: 2px;
+      background: hsla(0, 0%, 100%, .4);
+      z-index: 1;
+      transform: translate3d(50%, -50%, 0);
+    }
+  }
+}

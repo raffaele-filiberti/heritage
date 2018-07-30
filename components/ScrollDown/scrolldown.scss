@@ -1,0 +1,43 @@
+@import "../../scss/utils";
+
+.wrapper {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  height: 40px;
+  z-index: 4;
+
+  @include mq(md) {
+    height: 56px;
+  }
+
+    @include mq(lg) {
+    bottom: 48px;
+    left: 48px;
+  }
+
+  @include mq(lg,max) {
+    &.center {
+      right: 24px;
+    }
+  }
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.txt {
+  @extend %caption;
+  + svg {
+    margin-left: 16px;
+  }
+
+  .inverted & {
+    color: #fff;
+  }
+}

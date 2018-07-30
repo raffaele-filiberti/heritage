@@ -1,0 +1,43 @@
+@import "../../scss/utils";
+
+.wrapper {
+  composes: wrapper from '../Scroller/scroller.scss';
+
+  @include mq(md) {
+    padding: 0 320px;
+  }
+}
+
+.inner {
+  composes: inner from '../Scroller/scroller.scss';
+  color: #161516;
+
+  @include mq(md) {
+    width: 100%;
+  }
+}
+
+.cover {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  > img {
+    max-height: calc(100% - 88px);
+    height: 100%;
+    width: auto;
+
+    @include mq(md) {
+      max-height: calc(100% - 312px);
+    }
+  }
+}

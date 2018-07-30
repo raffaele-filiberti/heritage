@@ -1,0 +1,45 @@
+@import "../../scss/utils";
+
+.wrapper {
+  composes: wrapper from '../Scroller/scroller.scss';
+
+  @include mq(md) {
+    padding-right: 100px;
+  }
+}
+
+.inner {
+  composes: inner from '../Scroller/scroller.scss';
+  color: #fff;
+
+  @include mq(md) {
+    width: 50vw;
+  }
+
+  &.legal {
+    color: #161516;
+
+    @include mq(md) {
+      width: 33vw;
+    }
+  }
+}
+
+.cover {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: calc(100% - 24px);
+  overflow: hidden;
+
+  @include mq(md) {
+    width: calc(100% - 100px);
+  }
+}

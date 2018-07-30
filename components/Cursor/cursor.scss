@@ -1,0 +1,80 @@
+@import "../../scss/utils";
+
+.cursor {
+  visibility: inherit;
+  opacity: 1;
+}
+
+.pointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  opacity: 1;
+  cursor: none;
+  z-index: 1000;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.outer {
+  composes: pointer;
+  height: 40px;
+  width: 40px;
+  margin: -20px 0 0 -20px;
+  background: transparent;
+  border: 1px solid color(primary);
+  transition: .3s opacity, .3s transform;
+
+  &.isMouseDown {
+    transform: scale(.8);
+  }
+
+  &.isHover {
+    opacity: 0;
+    transform: scale(.8);
+  }
+
+  &.isMin {
+    transform: scale(0);
+  }
+}
+
+.inner {
+  composes: pointer;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  background: color(primary);
+  transition: .3s opacity, .3s transform;
+
+  &.isMouseDown {
+    transform: scale(1.25);
+  }
+
+  &.isHover {
+    opacity: 0;
+  }
+
+  &.isMin {
+    transform: scale(1.5);
+  }
+
+  &.isLoading {
+    animation-duration: 1s;
+    animation-name: beating;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes beating {
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(2.25);
+  }
+}
+

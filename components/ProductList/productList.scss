@@ -1,0 +1,24 @@
+@import "../../scss/utils";
+
+.list {
+  composes: list from '../Scroller/scroller.scss';
+}
+
+:global {
+  .product {
+    &-enter {
+      opacity: 0;
+      transform: translateY(100%);
+      visibility: hidden;
+      will-change: transform;
+
+      &-active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        transition: opacity 700ms cubic-bezier(.694, 0, .335, 1), transform 700ms cubic-bezier(.694, 0, .335, 1), visibility 700ms step-start;
+      }
+    }
+  }
+}
+

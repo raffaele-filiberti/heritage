@@ -1,0 +1,262 @@
+@import "../../scss/utils";
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9;
+  overflow: hidden;
+  visibility: hidden;
+  transform: translate3d(0, -100%, 0);
+  transition-timing-function: cubic-bezier(.86, 0, .07, 1);
+  transition-property: transform, visibility;
+  transition-duration: 700ms;
+  transition-delay: 500ms;
+
+  &.open {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+    transition-duration: 700ms;
+    transition-delay: 0ms;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  height: 100%;
+  max-width: 100vw;
+  padding: 0 24px;
+
+  @include mq(xl) {
+    padding: 0 100px;
+  }
+
+  @include mq(xxl) {
+    padding: 0 150px;
+  }
+}
+
+.inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  @include mq(lg, max) {
+    transition-timing-function: cubic-bezier(.86, 0, .07, 1);
+    transition-property: transform;
+    transition-duration: 1s;
+
+    &.open {
+      transform: translateX(calc(-100vw + 24px));
+    }
+  }
+
+  @include mq(lg) {
+    flex-wrap: wrap;
+    align-content: center;
+  }
+}
+
+.links {
+  z-index: 1;
+
+  @include mq(lg, max) {
+    min-width: calc(100vw - 24px);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  @include mq(lg) {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+.submenus {
+  align-items: flex-start;
+
+  @include mq(lg, max) {
+    min-width: calc(100vw - 48px);
+    text-align: left;
+    display: flex;
+  }
+
+  @include mq(lg) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 50%;
+    display: flex;
+    margin-top: 10vh;
+  }
+}
+
+.submenu,
+.link {
+  @include mq(lg) {
+    flex: 0 0 25%;
+    z-index: 2;
+  }
+}
+
+.link {
+  float: left;
+  clear: left;
+  margin: 8px 0;
+  padding: 0;
+  @extend %headline;
+
+  .outer {
+    color: #000;
+
+    &:after {
+      color: hsla(0, 0%, 100%, 0.6);
+    }
+  }
+}
+
+.subLink {
+  float: left;
+  clear: left;
+  margin: 8px 0;
+  padding: 4px;
+  color: #777;
+  @extend %lead;
+
+  &.active {
+    color: #fff;
+  }
+
+  @include mq(lg) {
+    margin-left: 12.5%;
+  }
+}
+
+.bg {
+  position: relative;
+  flex: 0 0 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before {
+    @include pseudo();
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: .7;
+    backface-visibility: hidden;
+  }
+
+  &Overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    transform: scaleX(1);
+    will-change: transform;
+    transition: transform 550ms cubic-bezier(.86, 0, .07, 1);;
+    transform-origin: right center;
+  }
+
+  &:hover {
+    .bgOverlay {
+      transform: scaleX(0);
+
+    }
+  }
+
+  &.bgActive,
+  &:hover {
+    .bgOverlay {
+      transform: scaleX(0);
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  z-index: 1;
+  @extend %caption;
+  left: 24px;
+  bottom: 24px;
+  height: 56px;
+
+  @include mq(md) {
+    left: 48px;
+    bottom: 48px;
+  }
+
+  span {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-flow: column;
+    height: 100%;
+
+    a {
+      margin: 5px 1.5em 5px 0;
+    }
+
+    @include mq(lg) {
+      align-items: center;
+      justify-content: center;
+      flex-flow: row;
+      height: 100%;
+    }
+  }
+}
+
+:global {
+  .example-enter {
+    &:local(.bgActive .bgOverlay){
+      transform: scaleX(1);
+    }
+  }
+
+  .example-enter.example-enter-active {
+    &:local(.bgActive .bgOverlay){
+      transform: scaleX(0);
+      transition: transform 550ms cubic-bezier(.86, 0, .07, 1);;
+      transform-origin: right center;
+      transition-delay: 500ms;
+    }
+  }
+
+  .example-leave {
+    &:local(.bgActive .bgOverlay){
+      transform: scaleX(0);
+    }
+  }
+
+  .example-leave.example-leave-active {
+    &:local(.bgActive .bgOverlay){
+      transition: transform 550ms cubic-bezier(.86, 0, .07, 1);;
+      transform-origin: right center;
+      transform: scaleX(1);
+    }
+  }
+}
+
+
+
+
+
+

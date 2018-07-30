@@ -1,0 +1,39 @@
+@import '../../scss/utils';
+
+.container {
+  display: flex;
+  font-size: .9rem;
+  justify-content: space-between;
+  @include mq(md) {
+    flex: 1 1 40%;
+  }
+  @include mq(lg) {
+    width: auto;
+  }
+
+  .times {
+    margin-left: 1.5rem;
+  }
+
+  .day,
+  .time {
+    @extend %body;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 0 5px 0;
+  }
+
+  .day {
+    flex: 0 0 50%;
+    color: color($black);
+  }
+
+  .time {
+    text-align: right;
+    flex: 0 0 50%;
+
+    &.closed {
+      color: crimson;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.outer {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: rgba(#000, 0.06);
+  z-index: 1;
+
+  &.inverted {
+    background: rgba(#fff, 0.06);
+  }
+}
+

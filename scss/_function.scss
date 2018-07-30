@@ -1,0 +1,28 @@
+//color
+@function color($color) {
+  @return map_get($colors, $color);
+}
+
+$yiq-text-dark: color(black);
+$yiq-text-light: color(white);
+
+// color yiq
+@function color-yiq($color) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+  @if ($yiq >= 150) {
+    @return $yiq-text-dark;
+  } @else {
+    @return $yiq-text-light;
+  }
+}
+
+//letter spacing calc
+@function letter-spacing($tracking, $font-size) {
+  @return $tracking / ($font-size * 16) * 1em;
+}
+

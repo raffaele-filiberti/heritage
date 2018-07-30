@@ -1,0 +1,23 @@
+@import "../../scss/utils";
+
+.slideBtnWrapper {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: inline-flex;
+  justify-content: space-between;
+  z-index: 4;
+
+
+  @include mq(lg) {
+    bottom: 48px;
+    right: 48px;
+  }
+}
+
+.slideBtnInner {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}

@@ -1,0 +1,45 @@
+@import "../../scss/utils";
+
+
+.wrapper {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  height: 40px;
+  z-index: 4;
+
+  @include mq(md) {
+    height: 56px;
+    left: 24px;
+
+  }
+
+  @include mq(lg) {
+    bottom: 48px;
+    right: 48px;
+    left: 48px;
+  }
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.counter {
+  @extend %caption;
+
+  .inverted & {
+    color: #fff;
+  }
+}
+
+.breadcrumbs {
+  position: fixed;
+  left: 56px;
+  top: 152px;
+  margin-top: 24px;
+}

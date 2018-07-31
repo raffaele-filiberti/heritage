@@ -183,13 +183,19 @@ const SubMenuToggle = ({
                            openSubMenu,
                            toggleSubMenu,
                            image: {url},
-    style
+                           style
                        }) => {
     const bg = (
         <div className={`${styles.bg} ${openSubMenu === title ? styles.bgActive : ''}`}
              style={{
                  background: `url(${imgix(url, {w: 250, h: 850})}) center center no-repeat`,
                  backgroundSize: 'cover'
+             }}
+             onMouseLeave={(e) => {
+                 //let evt = e.toElement || e.relatedTarget;
+                 //console.log(evt);
+                 //if (evt.classList.contains(styles.submenu)) return;
+                 toggleSubMenu('')
              }}>
             <div className={styles.bgOverlay}/>
             <Button
@@ -198,7 +204,6 @@ const SubMenuToggle = ({
                 active={openSubMenu === title}
                 title={title}
                 style={style}
-
             />
         </div>
     );

@@ -200,7 +200,8 @@
   height: 56px;
 
   @include mq(md) {
-    left: 48px;
+    left: auto;
+    right: 48px;
     bottom: 48px;
   }
 

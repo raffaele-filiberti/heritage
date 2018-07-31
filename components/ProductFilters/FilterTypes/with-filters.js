@@ -5,10 +5,10 @@ export default function withFilters(WrappedFilter, property) {
         constructor(props) {
             super(props);
             this.property = property;
-            this.filters = this.props.filters || {};
+            this.filters = this.props.filters || [];
 
             this.state = {
-                filterValues: this.filters[property] || []
+                filterValues: this.filters || []
             }
         }
 
@@ -27,6 +27,8 @@ export default function withFilters(WrappedFilter, property) {
 
             const index = filterValues.reduce((acc, filterValue, i) => (filterValue === value) ? i : acc, -1);
 
+            console.log(filterValues[index], index);
+
             if (index >= 0 && action) {
                 filterValues[index] = value
             }
@@ -44,7 +46,7 @@ export default function withFilters(WrappedFilter, property) {
         }
 
         render() {
-            const {intl, filters} = this.props;
+            const {filters} = this.props;
             const {filterValues} = this.state;
 
             return (

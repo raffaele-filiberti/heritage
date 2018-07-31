@@ -1,14 +1,12 @@
 import React from 'react';
 import ProductItem from '../ProductItem';
-import styles from './productList.scss'
 
-const ProductList = ({allEyewears}) => (
+const ProductList = ({allEyewears, params}) => (
     <React.Fragment>
         {allEyewears.map(({id, ...rest}) => (
             <ProductItem
                 key={id}
-                lazyLoad={false}
-                imageWidth={400}
+                params={params}
                 {...rest}
             />
         ))}

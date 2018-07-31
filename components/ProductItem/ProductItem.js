@@ -11,13 +11,13 @@ const ProductItem = ({
                          style,
                          series,
                          name,
+                         params,
                          image: {url}, alt = '', width,
                          collection
                      }) => (
     <li className={styles.wrapper}>
         <div className={styles.inner}>
-
-            <Link as={`/products/${slug}`} href={`/product?slug=${slug}`} prefetch>
+            <Link as={`/products/${slug}${params && `?${params}`}`} href={`/product?slug=${slug}${params && `&${params}`}`} prefetch>
                 <a className={styles.link} data-min>
                     <div className={styles.img}>
                         <img

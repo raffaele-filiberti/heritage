@@ -18,8 +18,8 @@ const VideoHeading = ({isError, statusCode}) => (
             {
                 isError ?
                     statusCode
-                        ? <span className={styles.preface}>Ops!<br/>An error {statusCode}<br/>occurred on server<br/>discover with</span>
-                        : <span className={styles.preface}>Ops!<br/>An error occurred<br/>on client<br/>discover with</span>
+                        ? <span className={styles.preface}>Ops!<br/>An error {statusCode}<br/>occurred on server</span>
+                        : <span className={styles.preface}>Ops!<br/>An error occurred<br/>on client</span>
                     : <span className={styles.preface}>discover<br/>our</span>
             }
 

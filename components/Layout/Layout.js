@@ -48,7 +48,8 @@ class Layout extends React.Component {
             filterIsOpen,
             toggleFilter,
             isStore,
-            isInfo
+            isInfo,
+            isDetail,
         } = this.props;
 
         const {
@@ -81,6 +82,7 @@ class Layout extends React.Component {
                         toggleMenu={this.toggleMenu}
                         menuIsOpen={menuIsOpen}
                         isProducts={isProducts}
+                        isDetail={isDetail}
                         isStore={isStore}
                         filterIsOpen={filterIsOpen}
                         openSubMenu={openSubMenu}

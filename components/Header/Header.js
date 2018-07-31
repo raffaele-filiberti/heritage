@@ -8,13 +8,13 @@ import Back from "../Icon/Back";
 import Logo from "../Icon/Logo";
 import Link from "next/link";
 import Filter from "../Icon/Filter";
-import Close from "../Icon/Close";
 import classNames from 'classnames/bind';
 import Check from "../Icon/Check";
 
 const cx = classNames.bind(styles);
 
 const Header = ({
+                    isDetail,
                     isProducts,
                     menuIsOpen,
                     toggleMenu,
@@ -44,13 +44,23 @@ const Header = ({
                         </IconButton>
                         }
                     </ML>
-                    {!isStore && !menuIsOpen && !isProducts &&
+                    {!isStore && !menuIsOpen && !isProducts && !isDetail &&
                     <Link href={'/products'} prefetch>
                         <IconButton
                             title={'all products'}
                             right
                         >
                             <Grid/>
+                        </IconButton>
+                    </Link>
+                    }
+                    {!isStore && !menuIsOpen && !isProducts && isDetail &&
+                    <Link href={{ pathname: '/products', query: isDetail }} prefetch>
+                        <IconButton
+                            title={'back to selection'}
+                            right
+                        >
+                            <Back/>
                         </IconButton>
                     </Link>
                     }

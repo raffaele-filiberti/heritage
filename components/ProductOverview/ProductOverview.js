@@ -5,13 +5,13 @@ import ProductFilter from "../ProductFilters/ProductFilter";
 import Scroller from "../Scroller/Scroller";
 import ProductList from "../ProductList/ProductList";
 import styles from './productOverview.scss';
-import Router from 'next/router'
 
 class ProductOverview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             filters: {...this.props.initialFilters},
+            slug: '',
         }
     }
 
@@ -37,29 +37,42 @@ class ProductOverview extends React.Component {
 
         let updatedFilters = {};
 
-        //let slug = '';
+        let slug = '';
 
-        filterLabels.forEach(label => {
+        filterLabels.forEach((label, index) => {
             if (filters[label].length > 0) {
                 updatedFilters[label] = filters[label];
-                //slug += `${label}=${updatedFilters[label].reduce((acc, value, index) => index && value + '|' + acc)}&`
+                slug += `${(index > 0) && (index <= filterLabels.length - 1) ? '&' : ''}${label}=${updatedFilters[label].reduce((acc, value, index) => index && value + '|' + acc)}`
             }
         });
 
-        //const href = `/products?${slug}`;
-
-        //console.log(slug);
-
-        //Router.replace(href);
-
         this.setState({
-            filters: updatedFilters
+            filters: updatedFilters,
+            slug: slug
         })
     };
 
+    componentDidMount() {
+        const {filters} = this.state;
+
+        const filterLabels = Object.getOwnPropertyNames(filters);
+
+        let slug = '';
+
+        filterLabels.forEach((label, index) => {
+            if (filters[label].length > 0) {
+                slug += `${(index > 0) && (index <= filterLabels.length - 1) ? '&' : ''}${label}=${filters[label].reduce((acc, value, index) => index && value + '|' + acc)}`
+            }
+        });
+
+        this.setState({
+            slug: slug
+        })
+    }
+
     render() {
         const {filterIsOpen} = this.props;
-        const {filters} = this.state;
+        const {filters, slug} = this.state;
 
         return (
             <React.Fragment>
@@ -73,7 +86,7 @@ class ProductOverview extends React.Component {
 
                                 <Scroller isFilter={filterIsOpen}>
 
-                                    {allEyewears && <ProductList allEyewears={allEyewears}/>}
+                                    {allEyewears && <ProductList allEyewears={allEyewears} params={slug}/>}
                                 </Scroller>
 
                                 <div className={styles.wrapper}>

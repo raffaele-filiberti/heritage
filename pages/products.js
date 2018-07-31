@@ -23,27 +23,33 @@ class Page extends React.Component {
         let filters = {};
 
         if (collection) {
-            filters.collection = [collection]
+            let uri = decodeURIComponent(collection);
+            filters.collection = uri.split('|')
         }
 
         if (series) {
-            filters.series = [series]
+            let uri = decodeURIComponent(series);
+            filters.series = uri.split('|')
         }
 
         if (target) {
-            filters.target = [target]
+            let uri = decodeURIComponent(target);
+            filters.target = uri.split('|')
         }
 
         if (shape) {
-            filters.shape = [shape]
+            let uri = decodeURIComponent(shape);
+            filters.shape = uri.split('|')
         }
 
         if (frame) {
-            filters.frame = [frame]
+            let uri = decodeURIComponent(frame);
+            filters.frame = uri.split('|')
         }
 
         if (type) {
-            filters.type = [type]
+            let uri = decodeURIComponent(type);
+            filters.type = uri.split('|')
         }
 
         return filters

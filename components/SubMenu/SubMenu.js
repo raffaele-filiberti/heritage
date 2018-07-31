@@ -31,7 +31,6 @@ const SubMenu = ({
                 </LG>
                 <ML>
                     <NavigationLink
-                        style={{transitionDelay: `${700 + (50 * index)}ms`}}
                         key={index}
                         {...normalize(link, openSubMenu)}
                         {...rest}

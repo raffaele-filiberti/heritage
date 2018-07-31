@@ -9,6 +9,10 @@
   &.paragraph {
     max-height: calc(100% - 180px);
 
+    @include mq(md) {
+      max-height: calc(100% - 208px)
+    }
+
     @include mq(lg) {
       max-height: calc(100% - 312px)
     }

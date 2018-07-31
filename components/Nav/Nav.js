@@ -104,7 +104,7 @@ const Nav = ({
                             <div className={innerClasses}>
 
                                 <ReactCSSTransitionGroup
-                                    transitionName="example"
+                                    transitionName="nav"
                                     transitionEnterTimeout={1500}
                                     transitionLeaveTimeout={1500}
                                     component={"div"}

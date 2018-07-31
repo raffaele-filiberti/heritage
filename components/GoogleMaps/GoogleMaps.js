@@ -86,9 +86,10 @@ const GoogleMaps = withScriptjs(withGoogleMap(GMaps));
 class DefaultProps extends React.Component {
     render() {
         const props = this.props;
+        console.log(process.env.GOOGLE_MAPS_API_KEY);
         return (
             <GoogleMaps
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAesw7bbWoxHtGn4nswrLF1OxKzi80b1A&v=3.exp"
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}&v=3.exp`}
                 containerElement={<div className={styles.container}/>}
                 loadingElement={<div className={styles.loader}/>}
                 mapElement={<div className={styles.inner}/>}

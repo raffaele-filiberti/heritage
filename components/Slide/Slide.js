@@ -68,7 +68,7 @@ class Slide extends React.Component {
             <section className={styles.slide} {...rest} ref={this.dom.root}>
 
                 <div className={styles.imageWrapper}>
-                    <ImageReveal src={url} ref={this.dom.image}/>
+                    <ImageReveal src={url} imageRef={this.dom.image}/>
                 </div>
                 <div className={styles.wrapper}>
                     <div className={styles.inner}>

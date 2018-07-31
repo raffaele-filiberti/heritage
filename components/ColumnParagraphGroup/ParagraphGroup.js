@@ -10,72 +10,47 @@ import TitleRevealer from "../TitleRevealer/TitleRevealer";
 import SubtitleRevealer from "../TitleRevealer/SubtitleRevealer";
 
 
-class ParagraphGroup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.divElement = React.createRef();
-        this.state = {
-            width: 0,
-            height: 0,
-        };
-    }
+const ParagraphGroup = ({
+                            id,
+                            title,
+                            text,
+                            split = false,
+                            subtitle = false,
+                            collection = false,
+                            image,
+                            actionLink = false,
+                        }) => (
+    <li className={styles.wrapper}>
+        <div className={styles.inner}>
+            <div className={styles.header}>
+                {subtitle && <SubtitleRevealer subtitle={subtitle}/>}
+                {collection && <SubtitleRevealer collection={collection}/>}
 
-    componentDidMount() {
-        console.log(this.divElement.current);
+                {title && <TitleRevealer title={title} split={split}/>}
 
-
-        if(this.divElement.current) {
-            const bounding = this.divElement.current.firstChild.getBoundingClientRect();
-            this.setState({height: bounding.height, width: bounding.width});
-        }
-    }
-
-    render() {
-        const {
-            id,
-            title,
-            text,
-            split = false,
-            subtitle = false,
-            collection = false,
-            image,
-            actionLink = false,
-        } = this.props;
-
-        return (
-            <li className={styles.wrapper}>
-                <div className={styles.inner}>
-                    <div className={styles.header}>
-                        {subtitle && <SubtitleRevealer subtitle={subtitle}/>}
-                        {collection && <SubtitleRevealer collection={collection}/>}
-
-                        {title && <TitleRevealer title={title} split={split}/>}
-
-                        {actionLink &&
-                        <Link href={`/products?collection=${id}&${actionLink._modelApiKey}=${actionLink.id}`} prefetch>
-                            <IconButton title={'view'} top>
-                                <View/>
-                            </IconButton>
-                        </Link>
-                        }
-                    </div>
-
-                    <div className={styles.body}>
-                        <ScrollableText className={'text'} text={text}/>
-                    </div>
-
-                </div>
-
-                {image &&
-                <div className={styles.inner} ref={this.divElement}>
-
-                    <ImageReveal src={image.url} {...this.state} paragraph />
-
-                </div>
+                {actionLink &&
+                <Link href={`/products?collection=${id}&${actionLink._modelApiKey}=${actionLink.id}`} prefetch>
+                    <IconButton title={'view'} top>
+                        <View/>
+                    </IconButton>
+                </Link>
                 }
-            </li>
-        );
-    }
-}
+            </div>
+
+            <div className={styles.body}>
+                <ScrollableText className={'text'} text={text}/>
+            </div>
+
+        </div>
+
+        {image &&
+        <div className={styles.inner}>
+
+            <ImageReveal src={image.url} paragraph/>
+
+        </div>
+        }
+    </li>
+);
 
 export default ParagraphGroup

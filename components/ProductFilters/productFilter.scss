@@ -37,6 +37,10 @@
   height: 100%;
   overflow-y: scroll;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   @include mq(md){
     padding: 0 24px 0 56px;
   }

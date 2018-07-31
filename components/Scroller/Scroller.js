@@ -100,7 +100,7 @@ class Scroller extends React.Component {
             ...{divs: Array.prototype.slice.call(this.dom.section.current.childNodes, 0)}
         };
 
-        //this.resize(isFilter);
+        this.resize();
     };
 
     addEvents = () => {
